@@ -66,6 +66,22 @@ namespace Conway
                         Cell currCell = new Cell() { living = bMainArr[dim1, dim2], x = dim2, y = dim1 };
                         List<bool> lNeighbours = new List<bool>();
                         List<int> lBlocksToCheck = new List<int>() { 1, 2, 3, 4, 6, 7, 8, 9 };
+                        /*
+                         Removing Neighbours that can't be checked, because they would cause an Array OutOfIndex Error
+                         Neighbours are structured like a telefonboard, 5(x) being the reference cell
+
+                        |1|2|3|
+                        |4|x|6|
+                        |7|8|9|
+
+                        E.g.: top left corner is reference cell
+
+                        neigbours will look like this:
+
+                        |x|6|
+                        |8|9|
+
+                         */
                         #region getNeighbours
                         if (dim1 == 0)
                         {
@@ -388,7 +404,6 @@ namespace Conway
                     break;
             }
         }
-        #endregion
 
         private void btnSingleStep_Click(object sender, EventArgs e)
         {
@@ -515,5 +530,6 @@ namespace Conway
             cellColor = colorDialog1.Color;
             pictureBox1.Refresh();
         }
+        #endregion
     }
 }
